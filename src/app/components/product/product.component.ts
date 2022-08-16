@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,7 @@ export class ProductComponent implements OnInit {
   products:Product[] = [];
   dataLoaded = false;
   constructor(private httpClient : HttpClient ,
-     private productService : ProductService, private activatedRoute : ActivatedRoute) { }
+     private productService : ProductService, private activatedRoute : ActivatedRoute,private toastrService : ToastrService) { }
 
 
   ngOnInit(): void {
@@ -41,6 +42,11 @@ export class ProductComponent implements OnInit {
     this.productService.getProductsByCategory(categoryId).subscribe(response=>{
       this.products = response.data
     })
+  }
+
+  addToCart(product : Product){
+    this.toastrService.success("Sepete eklendi",product.productName)
+
   }
 
 

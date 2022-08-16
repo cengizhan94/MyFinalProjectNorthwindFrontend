@@ -18,7 +18,7 @@ export class CartService {
       let cartItem = new CartItem();
       cartItem.product = product;
       cartItem.quantity = 1;
-      CartItem.push(cartItem)
+      CartItems.push(cartItem)
     }
   }
   removeFromCart(product:Product){
