@@ -23,7 +23,7 @@ export class CartSummaryComponent implements OnInit {
   }
   removeFromCart(product:Product){
     this.cartService.removeFromCart(product);
-    this.toastrService.error("Deleted",product.productName+"removed from cart")
+    this.toastrService.error(product.productName+" removed from cart.")
   }
 
 }
