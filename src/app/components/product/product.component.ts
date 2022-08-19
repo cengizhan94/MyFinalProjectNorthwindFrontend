@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import {HttpClient} from '@angular/common/http';
-import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +13,6 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductComponent implements OnInit {
 
-  apiUrl='https://localhost:44398/api/products/add'
   products:Product[] = [];
   dataLoaded = false;
   filterText="";
@@ -39,7 +37,7 @@ export class ProductComponent implements OnInit {
   }
 
   getProducts(){
-    this.productService.getProduccts().subscribe(response =>{
+    this.productService.getProducts().subscribe(response =>{
       this.products = response.data
       this.dataLoaded = true;
     })
@@ -48,6 +46,7 @@ export class ProductComponent implements OnInit {
   getProductsByCategory(categoryId:number){
     this.productService.getProductsByCategory(categoryId).subscribe(response=>{
       this.products = response.data
+      this.dataLoaded = true;
     })
   }
 
